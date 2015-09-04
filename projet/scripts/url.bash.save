@@ -1,0 +1,8 @@
+#!/bin/bash
+nomsite=$(echo $1  | cut -d "/" -f3)
+echo $nomsite
+mkdir /opt/lampp/htdocs/projet/scrip/opt/lampp/htdocs/projet/scriptsts/$nomsite
+cp reseauWea.bash script_recup.py traceroute.bash /var/www/tagada/Site/listing/$nomsite
+cd /var/www/tagada/Site/listing/$nomsite 
+chmod u+s,g+s reseauWea.bash script_recup.py traceroute.bash
+./script_recup.py $1

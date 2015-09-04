@@ -1,0 +1,20 @@
+url;time;respBodySize;mineType;nbTrame;nbHops;timeByTrame;TimeByHops;Conso
+www.google.fr;55;230;text/html;1;18;55.000;3.055;.008274
+www.google.fr;192;0; max-age=0;1;18;192.000;10.666;.028893
+www.google.fr;96;0;private;1;18;96.000;5.333;.014445
+www.google.fr;77;0;private;1;18;77.000;4.277;.011585
+www.google.fr;sb;jsa;d;1;18;0;0;0
+ssl.gstatic.com;140;0;public;1;19;140.000;7.368;.021012
+www.gstatic.com;sy25;def/rs=AA2YrTsDaLQ8MF9sEyvSM6IPSNsZc6zkrA;591;;18;;;
+www.google.fr;200;14158; 26 Aug 2016 00:00:00 GMT;10;18;20.000;1.111;.005779
+www.google.fr;sy62;async;idck;1;18;0;0;0
+www.google.fr;229;0;text/html;1;18;229.000;12.722;.034462
+apis.google.com;plusone/rt=j/sv=1/d=1/ed=1/am=AAI/rs=AItRSTPOWGI_kROKlKX9NGLO-MOVVH8_gQ/cb=gapi.loaded_0;687;Thu;1;18;;;
+www.google.com;106;0;public;1;20;106.000;5.300;.015872
+www.google.fr;3700372;4032500;4036527;2689;18;;;
+www.google.fr;35;0;public;1;18;35.000;1.944;.005264
+www.google.fr;69;230;text/html;1;18;69.000;3.833;.010382
+www.google.fr;271;0; max-age=0;1;18;271.000;15.055;.040782
+www.google.fr;79;0;text/html;1;18;79.000;4.388;.011885
+www.google.fr;3700372;4032500;4036527;2689;18;;;
+Total;;;;;;;;.208635

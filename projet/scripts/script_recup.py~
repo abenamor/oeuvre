@@ -1,0 +1,73 @@
+#!/usr/bin/env python2
+import sys, urllib2, re, time, os, csv, MySQLdb
+
+key= '32ecef7459594891b8ca53cc08aecc7d'
+try:
+	sys.argv[1]
+	url= sys.argv[1]
+except:
+	print("Need an argument")
+	sys.exit(2);
+
+##### RECUPERATION DEPUIS WEBPAGETEST #####
+opener= urllib2.build_opener()
+opener.addheaders = [('User-Agent', 'Mozilla/5.0 (X11; Linux x86_64; rv:24.0) Gecko/20140610 Firefox/24.0 Iceweasel/24.6.0')]
+opener.addheaders.append(('Connection', 'Keep-Alive'))
+response= opener.open('http://www.webpagetest.org/runtest.php?url='+url+'&k='+key+'&f=xml&r=12345')
+html= response.read()
+print (html)
+
+temp=re.search(r'<detailCSV>(.*)</detailCSV>', html)
+resCSV= temp.group(1)
+print(resCSV)
+time.sleep(30)
+os.system("wget " +resCSV)
+
+##### MISE EN FORME CSV  #####
+os.system("./reseauWea.bash requests.csv")
+
+
+##### DATABASE PART #####
+try:
+	conn= MySQLdb.connect(db= 'project', user= 'root', passwd= '', host='127.0.0.1')
+	print ("connexion reussie")
+except:
+	print ("La connexion avec la database a fail")
+
+else:
+	cursor= conn.cursor()   # creation du curseur
+
+
+reader= csv.reader(open("reseauWea.csv", "rU"), delimiter=';', dialect= csv.DictReader)
+for row in reader:
+	#print (row)
+	
+	if row[0] != 'url':
+		url= row[0]
+		time= row[1] 
+		Bodysize= row[2]
+		Mime= row[3]
+		Trame= row[4]
+		Hops= row[5]
+		TTrame= row[6]
+		TBy= row[7]
+		Conso= row[8]
+
+		if row[0] == 'Total':
+			requete="UPDATE historique SET consommation='" +row[8] +"' WHERE site='" +sys.argv[1] +"'"
+			cursor.execute(requete)
+		else :
+			requete="INSERT INTO archive (url, time, respBodySize, mineType, nbTrame, nbHops, timeByTrame, TimeBy, Conso) VALUES('" +url +"', '" +time +"', '" +Bodysize +"', '" +Mime +"', '" +Trame +"', '" +Hops +"', '" +TTrame +"', '" +TBy +"', '" +Conso +"')"
+			print (requete)
+			cursor.execute (requete)
+
+conn.commit()
+
+cursor.execute ("SELECT * FROM archive")
+results = cursor.fetchall()
+for row in results:
+	print (row)
+
+cursor.close ()
+conn.close ()
+

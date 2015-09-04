@@ -1,0 +1,6 @@
+apis.google.com;18
+Host;
+ssl.gstatic.com;19
+www.google.com;20
+www.google.fr;18
+www.gstatic.com;18
